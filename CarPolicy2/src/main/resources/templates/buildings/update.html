@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head th:replace="guestLayout :: header">
+
+</head>
+
+<body th:replace="guestLayout :: body">
+
+
+
+</body>
+
+
+     <div class="content">
+    <br><br><br><br><br>
+    
+    <div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center"> Create Car</h2>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post" th:action="@{/buildings/update/{buildingId}(buildingId=${building.id})}" th:object="${building}">
+                    <div class="mb-3">
+                    <input type="hidden" th:field="*{id}">
+                        <label class="form-label"> Address </label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="adress"
+                                placeholder="Enter Address"
+                                name="adress"
+                                th:field="*{adress}"
+                        />
+                        <p th:if="${#fields.hasErrors('adress')}" class="text-danger"
+                        th:errors="*{adress}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                                <label class="form-label"> City </label>
+                                <select class="form-control" name="cityId">
+                                   <option th:value="${building.city.id}" th:utext="${building.city.name}">Select..</option>
+                                   <option th:each="city : ${cities}" th:value="${city.id}" th:utext="${city.name}"/>
+                                </select>                       
+                                <p th:if="${#fields.hasErrors('city')}" class="text-danger"
+                                th:errors="*{city}"></p>
+                            </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> constructionYear </label>
+                        <input
+                                class="form-control"
+                                id="constructionYear"
+                                placeholder="Enter constructionYear"
+                                name="constructionYear"
+                                th:field="*{constructionYear}"
+                        >
+                        <p th:if="${#fields.hasErrors('constructionYear')}" class="text-danger"
+                           th:errors="*{constructionYear}"></p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label"> numberOfFloors </label>
+                        <input
+                                class="form-control"
+                                id="numberOfFloors"
+                                placeholder="Enter numberOfFloors"
+                                name="numberOfFloors"
+                                th:field="*{numberOfFloors}"
+                        >
+                        <p th:if="${#fields.hasErrors('numberOfFloors')}" class="text-danger"
+                           th:errors="*{numberOfFloors}"></p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label"> area </label>
+                        <input
+                                class="form-control"
+                                id="area"
+                                placeholder="Enter area"
+                                name="area"
+                                th:field="*{area}"
+                        >
+                        <p th:if="${#fields.hasErrors('area')}" class="text-danger"
+                           th:errors="*{area}"></p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <select name="usage">
+                            <option th:value="${building.usage}" th:utext="${building.usage}">Select..</option>
+                            <option th:each="usage : ${T(com.CarPolicy.CarPolicy.entities.Usage).values()}"
+                               th:text="${usage}"
+                               th:value="${usage}">
+                            </option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('usage')}" class="text-danger"
+                           th:errors="*{usage}"></p>
+                    </div>
+                    
+                   
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

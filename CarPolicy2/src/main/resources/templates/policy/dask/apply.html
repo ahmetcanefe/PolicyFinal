@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head th:replace="guestLayout :: header">
+
+</head>
+
+<body th:replace="guestLayout :: body">
+
+
+
+</body>
+
+
+     <div class="content">
+    <br><br><br><br><br>
+    
+    <div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center"> Apply Dask Policy</h2>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post" th:action="@{/daskPolicies/apply}" th:object="${policy}">
+                    <div class="mb-3">
+                        <input type="hidden" th:field="*{policyTypeId}">
+                        
+                        <label class="form-label"> Address </label>
+                        <select class="form-control" name="adress">
+                                <option value="">Select..</option>
+                                <option th:each="building : ${buildings}" th:value="${building.adress}" th:utext="${building.adress}"/>
+                        </select>
+                        <p th:if="${#fields.hasErrors('adress')}" class="text-danger"
+                        th:errors="*{adress}"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"> National Identity </label>
+                        <input
+                                class="form-control"
+                                id="nationalIdentity"
+                                placeholder="Enter nationalIdentity"
+                                name="nationalIdentity"
+                                th:field="*{nationalIdentity}" 
+                                readonly
+                        >
+                        <p th:if="${#fields.hasErrors('nationalIdentity')}" class="text-danger"
+                           th:errors="*{nationalIdentity}"></p>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                                 <label class="form-label"> Start Date </label>
+                                 <input class="form-control" id="startDate" name="startDate" placeholder="Enter startDate" type="date" th:field="*{startDate}">
+                                   <p th:if="${#fields.hasErrors('startDate')}" class="text-danger" th:errors="*{startDate}"></p>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                                 <label class="form-label"> End Date </label>
+                                 <input class="form-control" id="endDate" name="endDate" placeholder="Enter endDate" type="date" th:field="*{endDate}">
+                                   <p th:if="${#fields.hasErrors('endDate')}" class="text-danger" th:errors="*{endDate}"></p>
+                    </div>
+
+                   
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

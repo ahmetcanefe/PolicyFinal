@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head th:replace="guestLayout :: header">
+
+</head>
+
+<body th:replace="guestLayout :: body">
+
+
+
+</body>
+
+
+     <div class="content">
+    <br><br><br><br><br>
+    
+    <div class="container">
+    
+       <h2>Car Information</h2>
+       <table class="table table-striped table-hover table-border">
+         <thead class="table-info">
+              <th>licensePlate</th>
+              <th>model</th>
+              <th>manufacturingYear</th>
+              <th>mileage</th>
+              <th>color</th>
+         </thead>
+         
+         <tbody>
+              <tr>
+                   <td th:text="${car.licensePlate}"></td>
+                   <td th:text="${car.model.name}"></td>
+                   <td th:text="${car.manufacturingYear}"></td>
+                   <td th:text="${car.mileage}"></td>
+                   <td th:text="${car.color}"></td>                                
+             </tr>
+         </tbody>
+     </table>
+     <br/> <br/> 
+            
+            
+       <h2>Insurance Information</h2>
+       <table class="table table-striped table-hover table-border">
+         <thead class="table-info">
+              <th>Name</th>
+              <th>Details</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Price</th>
+         </thead>
+         
+         <tbody>
+               <tr th:if="${policy.isActive==true}" th:each = "policy : ${car.policies}">                 
+                   <td th:text="${policy.policyType.name}? ${policy.policyType.name} : 'YOK' ">
+                   <td th:text="${policy?.policyType.detail} ? ${policy?.policyType.detail} : 'YOK'">
+                   <td th:text="${policy?.startDate} ? ${policy.startDate} : 'YOK' "></td>       
+                   <td th:text="${policy?.endDate} ? ${policy.endDate} : 'YOK' "></td> 
+                   <td th:text="${policy?.price} ? ${policy.price} : 'YOK' "></td>                  
+              </tr>
+         </tbody>
+        
+     </table>
+     <br><br>
+     
+      <h2>Accident History Information</h2>
+         <table class="table table-striped table-hover table-border">
+         <thead class="table-info">
+              <th>Accident Name</th>
+              <th>Accident Detail</th>
+              <th>Status</th>
+            
+         </thead>
+         
+         <tbody>
+         <tr th:each = "carAccident : ${car.carAccidents}">
+                   <td th:text="${carAccident?.accidentName} ? ${carAccident.accidentName} : 'YOK' "></td>
+                   <td th:text="${carAccident?.accidentDetail} ? ${carAccident.accidentDetail} : 'YOK'"></td>
+                   <td th:text="${carAccident?.isActive} ? 'Active' : 'NonActive' "></td>
+                   
+                   <div th:if="${!car.carAccidents.empty} and ${carAccident.isActive==true}"  >
+                       
+                   </div>
+         </tr>
+         </tbody>
+        </table>
+      
+      </div>
+             <a th:href="@{/{carId}/carAccidents(carId=${car.id})}" class="btn btn-primary mt-3 mb-5">new Car Accident</a>  
+     </div>
+         
+
+</body>
+</html>

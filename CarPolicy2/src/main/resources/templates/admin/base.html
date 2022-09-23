@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head th:fragment="header">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="utf-8">
+  
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;;
+    }
+
+    header {
+      position: fixed;
+      background: #22242A;
+      padding: 20px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .left_area h3 {
+      color: #fff;
+      margin: 0px;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .left_area span {
+      color: #19B3D3;
+    }
+
+    .logout_btn {
+      padding: 5px;
+      background: #19B3D3;
+      text-decoration: none;
+      float: right;
+      margin-top: -30px;
+      margin-right: 40px;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      transition: 0.5s;
+
+    }
+
+    .logout_btn:hover {
+      background: #0B87A6;
+    }
+
+    .sidebar {
+      background: #2f323a;
+      margin-top: 70px;
+      padding-top: 30px;
+      position: fixed;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      transition: 0.5s;
+      transition-property: left;
+    }
+
+    .sidebar .profile_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h4 {
+      color: #ccc;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      display: block;
+      width: 100%;
+      line-height: 60px;
+      text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+
+    }
+
+    .sidebar a:hover {
+      background: #19B3D3;
+    }
+
+    .sidebar i {
+      padding-right: 10px;
+    }
+
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      padding-left: 30px;
+      font-size: 20px;
+      margin: 5px 0;
+      transition: 0.5s;
+      transition-property: color;
+      margin-top: 17px;
+    }
+
+    label #sidebar_btn:hover {
+      color: #19B3D3;
+    }
+
+    #check:checked~.sidebar {
+      left: -190px;
+    }
+
+    #check:checked~.sidebar a span {
+      display: none;
+    }
+
+    #check:checked~.sidebar a {
+      font-size: 20px;
+      margin-left: 170px;
+      width: 80px;
+    }
+
+    .content {
+      margin-left: 250px;
+      background: url(background.png) no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 100vh;
+      transition: 0.5s;
+    }
+
+    #check:checked~.content {
+      margin-left: 60px;
+    }
+
+    #check {
+      display: none;
+    }
+  </style>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+</head>
+
+<body th:fragment="body">
+
+  <input type="checkbox" id="check">
+  <!--header area start-->
+  <header style="padding-top: 0px;">
+    <label for="check">
+      <i style=""class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>Insurance Management</h3>
+    </div>
+    <div class="right_area">
+      <a href="/logout" class="logout_btn">Logout</a>
+    </div>
+  </header>
+  <!--header area end-->
+  <!--sidebar start-->
+  <div class="sidebar" style="
+    margin-top: 50px;
+">
+    <center>
+
+      <img src="{% static "image/admin.png" %}" class="profile_image" alt="">
+      <h4>Admin</h4>
+
+    </center>
+
+    <a href="/admin-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+    <a href="/admin-view-customer"><i class="fas fa-users"></i><span>Customer</span></a>
+    <a href="/admin-category"><i class="fas fa-list-alt"></i><span>Category</span></a>
+    <a href="/admin-policy"><i class="fab fa-product-hunt"></i><span>Policy</span></a>
+    <a href="/admin-question"><i class="fas fa-question-circle"></i><span>Questions</span></a>
+    
+
+
+  </div>
+  <!--sidebar end-->
+
+
+  <!--content start-->
+  
+  <!--content end-->
+</body>
+
+<div class="content">
+<br><br><br><br><br>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+      a:link {
+        text-decoration: none;
+      }
+  
+      .order-card {
+        color: rgb(255, 255, 255);
+      }
+  
+      .bg-c-blue {
+        background: #04868f;
+      }
+  
+      .bg-c-green {
+        background:#4C51BF;
+      }
+  
+      .bg-c-yellow {
+        background: #F56565;
+      }
+  
+      .bg-c-pink {
+        background: #663a30;
+      }
+  
+  
+      .card {
+        
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        border: 1px solid black;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+  
+      .card .card-block {
+        padding: 25px;
+      }
+  
+      .order-card i {
+        font-size: 26px;
+      }
+  
+      .f-left {
+        float: left;
+      }
+  
+      .f-right {
+        float: right;
+      }
+      header {
+      left: 0px;
+      right: 0px;
+    }
+    </style>
+  </head>
+
+
+  <div class="container">
+   
+    
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="admin-view-customer" style="text-decoration: none;color:white;">Total Registered User</a> </h6>
+            <h2 class="text-right"><i  class="fas fa-users f-left"></i><span>{{total_user}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-view-policy" style="text-decoration: none;color:white;">Listed Policies</a> </h6>
+            <h2 class="text-right"><i class="fab fa-product-hunt f-left"></i><span>{{total_policy}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-view-category" style="text-decoration: none;color:white;">Listed Categories</a></h6>
+           <h2 class="text-right"><i class="fas fa-list-alt f-left"></i><span>{{total_category}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-question" style="text-decoration: none;color:white;">Total Question</a></h6>
+            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"> <a href="admin-view-policy-holder" style="text-decoration: none;color:white;">Total Applied Policy Holder</a> </h6>
+            <h2 class="text-right"><i class="fas fa-user-cog f-left"></i><span>{{total_policy_holder}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-view-approved-policy-holder" style="text-decoration: none;color:white;">Approved Policy Holder</a> </h6>
+            <h2 class="text-right"><i class="fas fa-user-check f-left"></i><span>{{approved_policy_holder}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-view-disapproved-policy-holder" style="text-decoration: none;color:white;">Disapproved Policy Holder</a></h6>
+           <h2 class="text-right"><i class="fas fa-user-times f-left"></i><span>{{disapproved_policy_holder}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20"><a href="admin-view-waiting-policy-holder" style="text-decoration: none;color:white;">Policy Holder Waiting For Approval</a></h6>
+            <h2 class="text-right"><i class="fas fa-user-clock f-left"></i><span>{{waiting_policy_holder}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+  
+
+  </div>
+
+
+<br><br><br><br><br><br>
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+
+{% endblock content %}
+</div>
+
+
+</html>
